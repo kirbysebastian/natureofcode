@@ -11,6 +11,7 @@ int main()
 	std::cout << "randomwalker!" << std::endl;
 
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Nature of Code: RandomWalker");
+	window.setVerticalSyncEnabled(true);
 
 	RandomWalkerController walkerCtrlr;
 	while (window.isOpen())

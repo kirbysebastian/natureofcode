@@ -17,10 +17,10 @@ namespace helper
 		const int randX = random(1, 3);
 		const int randY = random(1, 3);
 
-		const int xPos = randX == 1 ?
-			-1 : (randX == 2 ? 0 : 1);
-		const int yPos = randY == 1 ?
-			-1 : (randY == 2 ? 0 : 1);
+		const float xPos = randX == 1 ?
+			-0.5 : (randX == 2 ? 0 : 0.5);
+		const float yPos = randY == 1 ?
+			-0.5 : (randY == 2 ? 0 : 0.5);
 
 		return sf::Vector2f(xPos, yPos);
 	}
