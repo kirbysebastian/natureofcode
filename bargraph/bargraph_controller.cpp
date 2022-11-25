@@ -38,11 +38,11 @@ void BarGraphController::increaseHeight(sf::RenderWindow& window)
 {
 	//const auto idx = utils::random<int>(1, 100);
 	
-	//Average
-	constexpr double kMean{50};
 	//How much spread from the mean
-	constexpr int kStdDeviation{12};
-	const auto idx = utils::randomGaussian(kMean, kStdDeviation);
+	constexpr int kStdDeviation{10};
+	const auto idx = utils::randomGaussian(1, 100, kStdDeviation);
+	if (idx == 0)
+		return;
 	auto& bar = m_bars[idx-1];
 	std::cout << "Bar[" << idx-1 << "] size: (" <<
 		bar.getSize().x << "," << bar.getSize().y <<
@@ -60,19 +60,12 @@ void BarGraphController::initBars()
 
 	auto currXPos{barWidth/2};
 	auto currYPos{m_height - (barHeight/2)};
-	//auto currYPos{m_height/2};
-	int ctr{1};
 	for (auto& bar : m_bars)
 	{
 		bar.setSize({barWidth, barHeight});
 		bar.setPosition(currXPos, currYPos);
+		bar.setFillColor(sf::Color::Red);
 
-		if (ctr == 50)
-			bar.setFillColor(sf::Color::Blue);
-		else
-			bar.setFillColor(sf::Color::Red);
-
-		++ctr;
 		currXPos += barWidth;
 	}
 }

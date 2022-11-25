@@ -16,12 +16,19 @@ namespace utils
 		return dist(rgen);
 	}
 
-	int randomGaussian(const double mean, const double deviation)
+	int randomGaussian(
+		const double min,
+		const double max,
+		const double deviation)
 	{
 		std::random_device rdev;
 		std::mt19937 rgen(rdev());
-		std::normal_distribution<double> d{mean, deviation};
-		return std::round(d(rgen));
+		std::normal_distribution<double> d{((min+max-1)/2), deviation};
+		const auto res{std::round(d(rgen))};
+
+		if (res < min || res > max)
+			return 0;
+		return res;
 	}
 }
 
