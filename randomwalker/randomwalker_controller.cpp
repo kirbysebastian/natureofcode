@@ -1,30 +1,5 @@
-#include <iostream>
-#include <random>
+#include "utilities.hpp"
 #include "randomwalker_controller.hpp"
-
-namespace helper
-{
-	int random(const int min, const int max)
-	{
-		std::random_device rdev;
-		std::mt19937 rgen(rdev());
-		std::uniform_int_distribution<int> dist(min, max);
-		return dist(rgen);
-	}
-
-	sf::Vector2f getRandomDirection()
-	{
-		const int randX = random(1, 3);
-		const int randY = random(1, 3);
-
-		const float xPos = randX == 1 ?
-			-0.5 : (randX == 2 ? 0 : 0.5);
-		const float yPos = randY == 1 ?
-			-0.5 : (randY == 2 ? 0 : 0.5);
-
-		return sf::Vector2f(xPos, yPos);
-	}
-}
 
 RandomWalkerController::RandomWalkerController()
 {
@@ -44,7 +19,43 @@ const sf::CircleShape& RandomWalkerController::getDrawable() const
 	return m_walker;
 }
 
-void RandomWalkerController::startWalking()
+template<>
+void RandomWalkerController::startWalking<Randomness::Random>()
 {
-	m_walker.setPosition(m_walker.getPosition() + helper::getRandomDirection());
+	m_walker.setPosition(m_walker.getPosition() + getRandomDirection());
 }
+
+template<>
+void RandomWalkerController::startWalking<Randomness::Custom>()
+{
+	m_walker.setPosition(m_walker.getPosition() + getCustomDirection(0.55, 0.5));
+}
+
+sf::Vector2f RandomWalkerController::getRandomDirection() const
+{
+	const int randX = utils::random<int>(1, 3);
+	const int randY = utils::random<int>(1, 3);
+
+	const float xPos = randX == 1 ?
+		-m_velocity.x : (randX == 2 ? 0 : m_velocity.x);
+	const float yPos = randY == 1 ?
+		-m_velocity.y : (randY == 2 ? 0 : m_velocity.y);
+
+	return sf::Vector2f(xPos, yPos);
+}
+
+sf::Vector2f RandomWalkerController::getCustomDirection(const float xRight, const float yDown) const
+{
+	const float randX = utils::random<float>(0, 1);
+	const float randY = utils::random<float>(0, 1);
+
+	const float xPos = randX < (1 - xRight) ?
+		-m_velocity.x : (randX > (1 - xRight) ?
+			m_velocity.y : 0);
+	const float yPos = randY < (1 - yDown) ?
+		-m_velocity.y : ( randY > (1 - yDown) ?
+			m_velocity.y : 0);
+
+	return sf::Vector2f(xPos, yPos);
+}
+

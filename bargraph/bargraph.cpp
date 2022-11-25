@@ -1,19 +1,19 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "randomwalker_controller.hpp"
+#include "bargraph_controller.hpp"
 
 #define WIDTH 1920
 #define HEIGHT 1080
 
 int main()
 {
-	std::cout << "randomwalker!" << std::endl;
+	std::cout << "bargraph!" << std::endl;
 
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Nature of Code: RandomWalker");
+	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Nature of Code: BarGraph");
 	window.setVerticalSyncEnabled(true);
 
-	RandomWalkerController walkerCtrlr;
+	BarGraphController barGraphCtrlr{100, WIDTH, HEIGHT};
 	while (window.isOpen())
 	{
 		sf::Event ev;
@@ -24,8 +24,8 @@ int main()
 						ev.key.code == sf::Keyboard::Key::Escape))
 				window.close();
 		}
-		walkerCtrlr.startWalking<Randomness::Custom>();
-		window.draw(walkerCtrlr.getDrawable());
+		barGraphCtrlr.increaseHeight(window);
+		barGraphCtrlr.draw(window);
 		window.display();
 	}
 
