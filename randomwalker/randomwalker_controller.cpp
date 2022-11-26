@@ -28,7 +28,7 @@ void RandomWalkerController::startWalking<Randomness::Random>()
 template<>
 void RandomWalkerController::startWalking<Randomness::Custom>()
 {
-	m_walker.setPosition(m_walker.getPosition() + getCustomDirection(0.55, 0.5));
+	m_walker.setPosition(m_walker.getPosition() + getCustomDirection(0.5, 0.5));
 }
 
 sf::Vector2f RandomWalkerController::getRandomDirection() const

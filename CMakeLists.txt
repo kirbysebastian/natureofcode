@@ -28,6 +28,16 @@ if (BarGraph)
 	)
 endif()
 
+if (Velocity)
+	add_subdirectory(velocity)
+	add_executable(${PROJECT_NAME}
+		${PROD_SOURCES}
+	)
+	target_include_directories(${PROJECT_NAME} PUBLIC
+		${PROD_NAME}
+	)
+endif()
+
 target_link_libraries(${PROJECT_NAME}
 	sfml-graphics
 	sfml-window

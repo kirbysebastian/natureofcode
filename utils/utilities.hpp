@@ -1,5 +1,6 @@
 #pragma once
 #include <random>
+#include <cmath>
 
 namespace utils
 {
@@ -29,6 +30,12 @@ namespace utils
 		if (res < min || res > max)
 			return 0;
 		return res;
+	}
+
+	template<typename T>
+	T magnitude(const T x, const T y)
+	{
+		return std::sqrt((x * x) + (y * y));
 	}
 }
 
