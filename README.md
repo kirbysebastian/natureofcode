@@ -1,2 +1,2 @@
 # natureofcode
-learning nature of code by Daniel Shiffman
+learning nature of code by Daniel Shiffman using SFML
