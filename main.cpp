@@ -1,3 +1,7 @@
 #include <iostream>
-#include "IController.hpp"
+
+int main()
+{
+	std::cout << "Nature Of Code!" << std::endl;
+}
 
