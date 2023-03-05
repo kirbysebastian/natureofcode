@@ -2,7 +2,7 @@
 #include <random>
 #include <cmath>
 
-namespace utils
+namespace common::utils
 {
 	template<typename T>
 	T random(const T min, const T max)
