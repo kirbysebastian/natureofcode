@@ -14,18 +14,20 @@ elseif (ObjectOnMouseClick)
 	add_subdirectory(objectonclick)
 elseif (Friction)
 	add_subdirectory(friction)
+elseif (ParticleCollission)
+	add_subdirectory(particlecollission)
 else()
 	set(PROD_SOURCES main.cpp)
 endif()
 
 add_executable(${PROJECT_NAME}
 	${PROD_SOURCES}
-	utils/utilities.hpp
+	common/utils.hpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
 	${PROD_NAME}
-	utils
+	common
 )
 
 target_link_libraries(${PROJECT_NAME}

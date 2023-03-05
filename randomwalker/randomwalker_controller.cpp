@@ -1,4 +1,4 @@
-#include "utilities.hpp"
+#include "utils.hpp"
 #include "randomwalker_controller.hpp"
 
 RandomWalkerController::RandomWalkerController()
@@ -33,8 +33,8 @@ void RandomWalkerController::startWalking<Randomness::Custom>()
 
 sf::Vector2f RandomWalkerController::getRandomDirection() const
 {
-	const int randX = utils::random<int>(1, 3);
-	const int randY = utils::random<int>(1, 3);
+	const int randX = common::utils::random<int>(1, 3);
+	const int randY = common::utils::random<int>(1, 3);
 
 	const float xPos = randX == 1 ?
 		-m_velocity.x : (randX == 2 ? 0 : m_velocity.x);
@@ -46,8 +46,8 @@ sf::Vector2f RandomWalkerController::getRandomDirection() const
 
 sf::Vector2f RandomWalkerController::getCustomDirection(const float xRight, const float yDown) const
 {
-	const float randX = utils::random<float>(0, 1);
-	const float randY = utils::random<float>(0, 1);
+	const float randX = common::utils::random<float>(0, 1);
+	const float randY = common::utils::random<float>(0, 1);
 
 	const float xPos = randX < (1 - xRight) ?
 		-m_velocity.x : (randX > (1 - xRight) ?

@@ -2,6 +2,8 @@
 #include <random>
 #include <cmath>
 
+#include <SFML/System/Vector2.hpp>
+
 namespace common::utils
 {
 	template<typename T>
@@ -37,5 +39,24 @@ namespace common::utils
 	{
 		return std::sqrt((x * x) + (y * y));
 	}
-}
+
+	template <typename T>
+	sf::Vector2<T> magnitude(const sf::Vector2<T>& vector)
+	{
+		return std::sqrt((vector.x * vector.x) + (vector.y * vector.y));
+	}
+	
+	template <typename T>
+	sf::Vector2<T> normalize(const sf::Vector2<T>& vector)
+	{
+		const T vecMag = magnitude<T>(vector);
+		if (0 == vecMag)
+		{
+			return vector;
+		}
+
+		return vector / vecMag;
+	}
+
+} // namespace common::utils
 
