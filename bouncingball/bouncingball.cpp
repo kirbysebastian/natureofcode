@@ -5,8 +5,8 @@
 #include "engine/engine.hpp"
 #include "objects/ball.hpp"
 
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
+#define SCREEN_WIDTH 1920.f
+#define SCREEN_HEIGHT 1080.f
 #define PROJECT_NAME "Bouncing Ball"
 
 int main()
@@ -20,7 +20,7 @@ int main()
 	objects::Ball ball{
 		ballRadius,
 		sf::Color::Red,
-		sf::Vector2f{SCREEN_WIDTH/2, SCREEN_HEIGHT/2}
+		sf::Vector2f{SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f}
 		//sf::Vector2f{SCREEN_WIDTH/2 - 2.f, SCREEN_HEIGHT/2 - 2.f}
 	};
 	//ball.setVelocity(sf::Vector2f{0.1f, 0.1f});
@@ -39,6 +39,7 @@ int main()
 			// Should we listen to event here???
 			evManager.listen(ev);
 		}
+		//engine.applyGravity(ball);
 		engine.applyCollision(ball);
 		engine.move(ball);
 

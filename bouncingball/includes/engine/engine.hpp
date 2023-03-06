@@ -3,7 +3,9 @@
 
 #include "objects/ball.hpp"
 
-#define GRAVITY_ACCELERATION 0.00001f
+#define GRAVITY_ACCELERATION 0.0001f
+//#define FRICTION 0.898f
+#define FRICTION 0.8f
 
 namespace engine
 {
