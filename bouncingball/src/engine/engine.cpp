@@ -22,17 +22,17 @@ void Engine::applyGravity(objects::Ball& ball)
 
 void Engine::applyCollision(objects::Ball& ball)
 {
-	if (isTouchingFloor(ball))
+	if (isOutOfBounds(ball))
 	{
 		std::cout << "OUT OF BOUNDS!" << std::endl;
-		if (ball.getVelocity().y < 0.000099f)
+/* 		if (ball.getVelocity().y < 0.000099f)
 		{
 			ball.setVelocity(sf::Vector2f{});
 			ball.setAcceleration(sf::Vector2f{});
 			return;
-		}
+		} */
 
-		ball.setVelocity(ball.getVelocity() * -1.f * FRICTION);
+		ball.setVelocity(ball.getVelocity() * -1.f);
 	}
 }
 
@@ -54,7 +54,7 @@ bool Engine::isTouchingFloor(const objects::Ball& ball)
 {
 	const auto height = ball.getDiameter();
 	const auto& pos{ball.getPosition()};
-	if (pos.y < 0 || ((pos.y + height) > m_yBound))
+	if ((pos.y + height) > m_yBound)
 	{
 		return true;
 	}

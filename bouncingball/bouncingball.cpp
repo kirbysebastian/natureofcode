@@ -20,10 +20,10 @@ int main()
 	objects::Ball ball{
 		ballRadius,
 		sf::Color::Red,
-		sf::Vector2f{SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f}
+		sf::Vector2f{SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f} // initial position
 		//sf::Vector2f{SCREEN_WIDTH/2 - 2.f, SCREEN_HEIGHT/2 - 2.f}
 	};
-	//ball.setVelocity(sf::Vector2f{0.1f, 0.1f});
+	ball.setVelocity(sf::Vector2f{0.1f, 0.1f});
 	engine.applyGravity(ball);
 
 	while (window.isOpen())
@@ -35,6 +35,13 @@ int main()
 				(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
 			{
 				window.close();
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				ball = objects::Ball{ballRadius, sf::Color::Red, sf::Vector2f{SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f}};
+				ball.setVelocity(sf::Vector2f{0.2f, 0.1f});
+				engine.applyGravity(ball);
 			}
 			// Should we listen to event here???
 			evManager.listen(ev);

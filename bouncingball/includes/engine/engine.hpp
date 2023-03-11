@@ -5,7 +5,7 @@
 
 #define GRAVITY_ACCELERATION 0.0001f
 //#define FRICTION 0.898f
-#define FRICTION 0.8f
+#define FRICTION 0.98f
 
 namespace engine
 {
